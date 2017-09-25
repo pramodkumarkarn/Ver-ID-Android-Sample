@@ -203,12 +203,12 @@ Follow these steps to ensure the user holding the device is a live person:
 # Release Notes
 ## Changes in Version 1.8
 
-- Added 3 [liveness detection levels](com.appliedrec.ver_id.VerID.LivenessDetection.html). Regular (default) liveness detection no longer requires the user to register multiple poses.
-- Added the option to guide the user through [registration](com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html#showGuide) and [authentication](com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html#showGuide).
-- Added the option to display the result of [registration](com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html#showResult) and [authentication](com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html#showResult) sessions.
-- Simplified retrieval of session results: `VerIDActivity.EXTRA_SESSION_RESULT` [parcelable extra](com.appliedrec.ver_id.session.VerIDSessionResult.html) contains all session information including collected [images](com.appliedrec.ver_id.session.VerIDSessionResult.html#getImageUris()) and [faces](com.appliedrec.ver_id.session.VerIDSessionResult.html#getFaceImages()).
-- Deprecated `VerIDIntent` class. Use Intent extra constants from [`VerIDActivity`](com.appliedrec.ver_id.ui.VerIDActivity.html).
-- Deprecated `VerIDSession`. The [`outcome`](com.appliedrec.ver_id.session.VerIDSessionResult.html#outcome) parameter of `VerIDSessionResult` is now [`VerIDSessionResult.Outcome`](com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html).
+- Added 3 [liveness detection levels](docs/com.appliedrec.ver_id.VerID.LivenessDetection.html). Regular (default) liveness detection no longer requires the user to register multiple poses.
+- Added the option to guide the user through [registration](docs/com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html#showGuide) and [authentication](docs/com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html#showGuide).
+- Added the option to display the result of [registration](docs/com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html#showResult) and [authentication](docs/com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html#showResult) sessions.
+- Simplified retrieval of session results: `VerIDActivity.EXTRA_SESSION_RESULT` [parcelable extra](docs/com.appliedrec.ver_id.session.VerIDSessionResult.html) contains all session information including collected [images](docs/com.appliedrec.ver_id.session.VerIDSessionResult.html#getImageUris()) and [faces](docs/com.appliedrec.ver_id.session.VerIDSessionResult.html#getFaceImages()).
+- Deprecated `VerIDIntent` class. Use Intent extra constants from [`VerIDActivity`](docs/com.appliedrec.ver_id.ui.VerIDActivity.html).
+- Deprecated `VerIDSession`. The [`outcome`](docs/com.appliedrec.ver_id.session.VerIDSessionResult.html#outcome) parameter of `VerIDSessionResult` is now [`VerIDSessionResult.Outcome`](docs/com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html).
 
 ## Changes in Version 1.7
 - Real-time face pose estimates:
@@ -241,32 +241,32 @@ We changed how client apps authenticate with Ver-ID. In order to run Ver-ID you 
 You can register your app by logging in to <a href="https://dev.ver-id.com/" target="_top">https://dev.ver-id.com/</a>.
 ### API Changes
 
-- Load Ver-ID <a href="com.appliedrec.ver_id.VerID.html#load(Context, String)">with your API secret</a>
+- Load Ver-ID <a href="docs/com.appliedrec.ver_id.VerID.html#load(Context, String)">with your API secret</a>
 
 ## Changes in Version 1.3
 Version 1.3 introduces anti-spoofing. Ver-ID asks the user to register her/his face in various bearings. At authentication the user is requested to assume one of the registered bearings.
 
-You need to determine how many of the <a href="com.appliedrec.ver_id.VerID.Bearing.html">9 bearings</a> you want to request during your registration process. We recommend using the default set of 4 bearings. More bearings provide more security at the expense of user experience.
+You need to determine how many of the <a href="docs/com.appliedrec.ver_id.VerID.Bearing.html">9 bearings</a> you want to request during your registration process. We recommend using the default set of 4 bearings. More bearings provide more security at the expense of user experience.
 
 Existing users who don't have different bearings registered will not be asked to meet the anti-spoofing challenge until they register one or more additional bearings.
 
 ### API Changes
 
-- We have simplified the way settings are passed to Ver-ID sessions. Instead of multiple intent extras the application will now pass a single parcelable extra settings object. Please refer to <a href="com.appliedrec.ver_id.session.VerIDAuthenticationSession.Settings.html">VerIDAuthenticationSession.Settings</a> and <a href="com.appliedrec.ver_id.VerIDUserRegistrationSession.Settings.html">VerIDUserRegistrationSession.Settings</a>.
-- With the introduction of anti-spoofing, authentication sessions now comprise one or more authentication segments, each of which correspond to an anti-spoofing challenge. As a result, the timeout of an authentication session is not set on the session but on the segment. When a segment times out the session fails. For more information see <a href="com.appliedrec.ver_id.session.VerIDAuthenticationSession.Settings.html">VerIDAuthenticationSession.Settings</a>.
-- Like authentication sessions, the timing of registration sessions changed with the introduction of anti-spoofing. The user controls the timing of the individual bearing registrations and a session timeout no longer makes sense. The individual bearing registrations may still time out and fail. For more information consult <a href="com.appliedrec.ver_id.VerIDUserRegistrationSession.Settings.html">VerIDUserRegistrationSession.Settings</a>.
-- Images are now submitted to Ver-ID sessions as byte arrays of image data. This significantly improves performance. The old way of submitting image file names still works but is discouraged and marked as deprecated. If you're implementing your own image provider consider switching to <a href="com.appliedrec.ver_id.session.VerIDSession.html#addImage(VerIDImageRequest, byte[], int, Point, int)">the new addImage method</a>.
-- The image provider interface has changed. If you're using your own image provider implementation please refer to <a href="com.appliedrec.ver_id.VerIDImageProvider.html">the documentation</a>.
+- We have simplified the way settings are passed to Ver-ID sessions. Instead of multiple intent extras the application will now pass a single parcelable extra settings object. Please refer to <a href="docs/com.appliedrec.ver_id.session.VerIDAuthenticationSession.Settings.html">VerIDAuthenticationSession.Settings</a> and <a href="docs/com.appliedrec.ver_id.VerIDUserRegistrationSession.Settings.html">VerIDUserRegistrationSession.Settings</a>.
+- With the introduction of anti-spoofing, authentication sessions now comprise one or more authentication segments, each of which correspond to an anti-spoofing challenge. As a result, the timeout of an authentication session is not set on the session but on the segment. When a segment times out the session fails. For more information see <a href="docs/com.appliedrec.ver_id.session.VerIDAuthenticationSession.Settings.html">VerIDAuthenticationSession.Settings</a>.
+- Like authentication sessions, the timing of registration sessions changed with the introduction of anti-spoofing. The user controls the timing of the individual bearing registrations and a session timeout no longer makes sense. The individual bearing registrations may still time out and fail. For more information consult <a href="docs/com.appliedrec.ver_id.VerIDUserRegistrationSession.Settings.html">VerIDUserRegistrationSession.Settings</a>.
+- Images are now submitted to Ver-ID sessions as byte arrays of image data. This significantly improves performance. The old way of submitting image file names still works but is discouraged and marked as deprecated. If you're implementing your own image provider consider switching to <a href="docs/com.appliedrec.ver_id.session.VerIDSession.html#addImage(VerIDImageRequest, byte[], int, Point, int)">the new addImage method</a>.
+- The image provider interface has changed. If you're using your own image provider implementation please refer to <a href="docs/com.appliedrec.ver_id.VerIDImageProvider.html">the documentation</a>.
 </ul>
 
 ## Changes in Version 1.2
 ### API Changes
 
-- Added <a href="com.appliedrec.ver_id.VerIDFaceDetectionListener.html">face detection listener</a>, which gives the client the chance to intercept face detection results before they are passed on for processing.
-- Changed the `requestImage` method signature on the <a href="com.appliedrec.ver_id.VerIDImageProvider.html">image provider</a>. The request contains a predicate object that describes the conditions for face acceptance.
-- Added `onSessionProgress` method on <a href="com.appliedrec.ver_id.VerIDSessionListener.html">VerIDSessionListener</a> to let the listener receive the individual face processing results.
-- <a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a> now includes a lot more information about the received face.
-- Introduced <a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a> object, which contains information about the detected face. The object is returned by the <a href="com.appliedrec.ver_id.VerIDFaceDetectionListener.html">VerIDFaceDetectionListener</a> and as part of <a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a>.
+- Added <a href="docs/com.appliedrec.ver_id.VerIDFaceDetectionListener.html">face detection listener</a>, which gives the client the chance to intercept face detection results before they are passed on for processing.
+- Changed the `requestImage` method signature on the <a href="docs/com.appliedrec.ver_id.VerIDImageProvider.html">image provider</a>. The request contains a predicate object that describes the conditions for face acceptance.
+- Added `onSessionProgress` method on <a href="docs/com.appliedrec.ver_id.VerIDSessionListener.html">VerIDSessionListener</a> to let the listener receive the individual face processing results.
+- <a href="docs/com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a> now includes a lot more information about the received face.
+- Introduced <a href="docs/com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a> object, which contains information about the detected face. The object is returned by the <a href="docs/com.appliedrec.ver_id.VerIDFaceDetectionListener.html">VerIDFaceDetectionListener</a> and as part of <a href="docs/com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a>.
 
 ### Fixes
 
@@ -276,8 +276,8 @@ Existing users who don't have different bearings registered will not be asked to
 ## Changes in Version 1.1
 ### API Changes
 
-- Added the ability to <a href="com.appliedrec.ver_id.session.VerIDSession.html#setImageRequestTimeoutInterval(long)">set the timeout interval</a> for individual image requests.
-- Setting of security level has moved from <a href="com.appliedrec.ver_id.session.VerIDSession.html#setSecurityLevel(VerID.SecurityLevel)">VerIDSession</a> to <a href="com.appliedrec.ver_id.VerID.html#setSecurityLevel(VerID.SecurityLevel)">VerID</a>.
+- Added the ability to <a href="docs/com.appliedrec.ver_id.session.VerIDSession.html#setImageRequestTimeoutInterval(long)">set the timeout interval</a> for individual image requests.
+- Setting of security level has moved from <a href="docs/com.appliedrec.ver_id.session.VerIDSession.html#setSecurityLevel(VerID.SecurityLevel)">VerIDSession</a> to <a href="docs/com.appliedrec.ver_id.VerID.html#setSecurityLevel(VerID.SecurityLevel)">VerID</a>.
 
 ### Fixes
 
