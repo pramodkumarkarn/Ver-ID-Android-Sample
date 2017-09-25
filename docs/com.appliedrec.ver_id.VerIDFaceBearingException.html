@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/1.8/Ver-ID-login-demo-1.8.zip">Download demo app</a></li></ul><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li></ul></aside>
+</body>
+</html>
+<h1>VerIDFaceBearingException</h1>
+<section>
+<h4>Created by jakub on 14/03/2017.</h4>
+</section>
+<h4>Package com.appliedrec.ver_id</h4>
+<code>public class  VerIDFaceBearingException</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.VerIDFaceBearingException
+<ul class="ancestry"><li>java.lang.Exception
+<ul class="ancestry"><li>java.lang.Throwable
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<section><h2>Constructor</h2><dl>
+<dt><h3><a name="VerIDFaceBearingException(int, FBFace)">VerIDFaceBearingException</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public VerIDFaceBearingException(int, FBFace)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>code <code>int</code></dt>
+<dt>face <code>com.appliedrec.detreclib.detection.FBFace</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="getCode()">getCode</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public getCode()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>int</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getFace()">getFace</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public getFace()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>com.appliedrec.detreclib.detection.FBFace</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Properties</h2><dl>
+<dt><h3><a name="INVALID_BEARING">INVALID_BEARING</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public static final int INVALID_BEARING</code>
+
+</dd>
+<dt><h3><a name="INCOMPLETE_BEARING">INCOMPLETE_BEARING</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public static final int INCOMPLETE_BEARING</code>
+
+</dd>
+</dl></section>

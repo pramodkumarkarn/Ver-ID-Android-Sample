@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/1.8/Ver-ID-login-demo-1.8.zip">Download demo app</a></li></ul><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li></ul></aside>
+</body>
+</html>
+<h1>VerIDLivenessDetectionSessionSettings</h1>
+<section>
+<h4>Liveness detection session settings</h4>
+</section>
+<h4>Package com.appliedrec.ver_id.session</h4>
+<code>public class  VerIDLivenessDetectionSessionSettings</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings
+<ul class="ancestry"><li>com.appliedrec.ver_id.session.VerIDSessionSettings
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+</li></ul>
+<section><h2>Constructor</h2><dl>
+<dt><h3><a name="VerIDLivenessDetectionSessionSettings()">VerIDLivenessDetectionSessionSettings</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public VerIDLivenessDetectionSessionSettings()</code>
+<p>Settings constructor</p>
+
+</dd>
+</dl></section>
+<section><h2>Properties</h2><dl>
+<dt><h3><a name="segmentStartDelay">segmentStartDelay</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public long segmentStartDelay</code>
+<p>Milliseconds before the session starts detecting liveness for each pose segment. This gives the user time to assume the requested pose.</p>
+
+</dd>
+<dt><h3><a name="segmentDuration">segmentDuration</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public long segmentDuration</code>
+<p>Minimum duration of the pose segment in milliseconds. The authentication can happen very fast. This ensures the process is clear to the user.</p>
+
+</dd>
+<dt><h3><a name="requiredNumberOfSegments">requiredNumberOfSegments</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public int requiredNumberOfSegments</code>
+<p>The number of pose segments the user will be required to complete in the session. Must be greater than 1 for liveness detection to be performed.</p>
+
+</dd>
+<dt><h3><a name="includeFaceTemplatesInResult">includeFaceTemplatesInResult</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean includeFaceTemplatesInResult</code>
+<p>If set to true the session result will include the face templates collected in the session. Templates can be used for comparison with other faces.</p>
+
+</dd>
+<dt><h3><a name="showGuide">showGuide</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean showGuide</code>
+<p>Set to true to show screens that guide the user through liveness detection before the session starts.</p>
+
+</dd>
+<dt><h3><a name="showResult">showResult</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean showResult</code>
+<p>Set to true to show the result at the end of the session.</p>
+
+</dd>
+</dl></section>

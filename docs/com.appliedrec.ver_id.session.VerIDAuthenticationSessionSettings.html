@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/1.8/Ver-ID-login-demo-1.8.zip">Download demo app</a></li></ul><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li></ul></aside>
+</body>
+</html>
+<h1>VerIDAuthenticationSessionSettings</h1>
+<section>
+<h4>Authentication session settings</h4>
+</section>
+<h4>Package com.appliedrec.ver_id.session</h4>
+<code>public class  VerIDAuthenticationSessionSettings</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings
+<ul class="ancestry"><li>com.appliedrec.ver_id.session.VerIDSessionSettings
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+</li></ul>
+<section><h2>Constructors</h2><dl>
+<dt><h3><a name="VerIDAuthenticationSessionSettings(String)">VerIDAuthenticationSessionSettings</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public VerIDAuthenticationSessionSettings(String)</code>
+<p>Settings constructor with <a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">liveness detection</a> set to REGULAR</p>
+<h4>Parameters</h4>
+<dl>
+<dt>userId <code>java.lang.String</code></dt>
+<dd>The user to authenticate in the session</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="VerIDAuthenticationSessionSettings(String, VerID.LivenessDetection)">VerIDAuthenticationSessionSettings</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public VerIDAuthenticationSessionSettings(String, VerID.LivenessDetection)</code>
+<p>Settings constructor</p>
+<h4>Parameters</h4>
+<dl>
+<dt>userId <code>java.lang.String</code></dt>
+<dd>The user to authenticate in the session</dd>
+<dt>livenessDetection <code>com.appliedrec.ver_id.VerID.LivenessDetection</code></dt>
+<dd>The liveness detection level to use in the session</dd>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Properties</h2><dl>
+<dt><h3><a name="userId">userId</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public final String userId</code>
+<p>The ID of the user to authenticate in this session</p>
+
+</dd>
+<dt><h3><a name="segmentStartDelay">segmentStartDelay</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public long segmentStartDelay</code>
+<p>Milliseconds before the session starts authenticating faces for each pose segment. This gives the user time to assume the requested pose in sessions with liveness detection.</p>
+
+</dd>
+<dt><h3><a name="segmentDuration">segmentDuration</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public long segmentDuration</code>
+<p>Minimum duration of the pose segment in milliseconds. The authentication can happen very fast. This ensures the process is clear to the user.</p>
+
+</dd>
+<dt><h3><a name="isIndefinite">isIndefinite</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean isIndefinite</code>
+<p>Set to true for persistent authentication sessions.</p>
+
+</dd>
+<dt><h3><a name="requiredNumberOfSegments">requiredNumberOfSegments</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public int requiredNumberOfSegments</code>
+<p>The number of pose segments the user will be required to complete in the session.</p>
+
+</dd>
+<dt><h3><a name="showGuide">showGuide</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean showGuide</code>
+<p>Set to true to show screens that guide the user through authentication before the session starts.
+
+ Note that only sessions with liveness detection set to <a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">REGULAR</a> or <a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">STRICT</a> will show the guide.</p>
+
+</dd>
+<dt><h3><a name="showResult">showResult</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public boolean showResult</code>
+<p>Set to true to show the result at the end of the session.</p>
+
+</dd>
+<dt><h3><a name="livenessDetection">livenessDetection</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public VerID.LivenessDetection livenessDetection</code>
+<p>The level of liveness detection required in this session.</p>
+
+</dd>
+<dt><h3><a name="bearings">bearings</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public EnumSet bearings</code>
+<p>Bearings the user may be asked to assume in this session. This is set automatically to EnumSet.of(VerID.Bearing.STRAIGHT, VerID.Bearing.LEFT, VerID.Bearing.UP, VerID.Bearing.RIGHT) for sessions with liveness detection.</p>
+
+</dd>
+</dl></section>

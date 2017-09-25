@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/1.8/Ver-ID-login-demo-1.8.zip">Download demo app</a></li></ul><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li></ul></aside>
+</body>
+</html>
+<h1>ILogger</h1>
+<section>
+<h4>Pass an instance of a class that implements this interface to <a href="com.appliedrec.ver_id.VerID.html#setLogger(ILogger)">VerID.shared.setLogger</a> to implement your own logging mechanism.</h4>
+</section>
+<h4>Package com.appliedrec.ver_id.util</h4>
+<code>public interface  ILogger</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.util.ILogger
+</li></ul>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="log(ILogger.EventType, String, long, Bitmap, RectF, PointF[], VerID.EulerAngleF, Boolean)">log</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public log(ILogger.EventType, String, long, Bitmap, RectF, PointF[], VerID.EulerAngleF, Boolean)</code>
+<p>Log an event</p>
+<h4>Parameters</h4>
+<dl>
+<dt>eventType <code><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">com.appliedrec.ver_id.util.ILogger.EventType</a></code></dt>
+<dd>Type of the event</dd>
+<dt>description <code>java.lang.String</code></dt>
+<dd>Description of the event</dd>
+<dt>timestamp <code>long</code></dt>
+<dd>Timestamp of the event occurrence in milliseconds since Jan 1 1970</dd>
+<dt>image <code>android.graphics.Bitmap</code></dt>
+<dd>Image associated with the event – typically an image collected during a Ver-ID session</dd>
+<dt>faceBounds <code>android.graphics.RectF</code></dt>
+<dd>Bounds of the face detected in the image expressed as fractions of the image width and height</dd>
+<dt>eyeCoordinates <code>android.graphics.PointF[]</code></dt>
+<dd>Eye coordinates of the face detected in the image expressed as fractions of the image width and height</dd>
+<dt>faceAngle <code>com.appliedrec.ver_id.VerID.EulerAngleF</code></dt>
+<dd>Yaw, pitch and roll of the face detected in the image</dd>
+<dt>faceHasTemplate <code>java.lang.Boolean</code></dt>
+<dd><code>true</code> if the face has a template and is suitable for recognition</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getLog(ILogger.EventType...)">getLog</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public getLog(ILogger.EventType...)</code>
+<p>Fetch log entries with the given types</p>
+<h4>Parameters</h4>
+<dl>
+<dt>eventType <code><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">com.appliedrec.ver_id.util.ILogger.EventType[]</a></code></dt>
+<dd>The types of event to fetch</dd>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>com.appliedrec.ver_id.model.LogEntry[]</code></dt>
+<dd>Array of log entries of the given types or all entries if no type is specified</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="clearLog()">clearLog</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public clearLog()</code>
+<p>Clear the event log</p>
+
+</dd>
+<dt><h3><a name="isLogEmpty(ILogger.EventType...)">isLogEmpty</a></h3><p>Introduced in version 1.8</p></dt>
+<dd>
+<code>public isLogEmpty(ILogger.EventType...)</code>
+<p>Indicates whether the log has events with the given types. All entries are considered if no event types are specified.</p>
+<h4>Parameters</h4>
+<dl>
+<dt>eventType <code><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">com.appliedrec.ver_id.util.ILogger.EventType[]</a></code></dt>
+<dd>The types of event to check</dd>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>boolean</code></dt>
+<dd><code>false</code> if the log contains entries with the given event types</dd>
+</dl>
+
+</dd>
+</dl></section>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/1.8/Ver-ID-login-demo-1.8.zip">Download demo app</a></li></ul><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li></ul></aside>
+</body>
+</html>
+<h1>VerID.EulerAngleF</h1>
+<h4>Package com.appliedrec.ver_id</h4>
+<code>public static class  VerID.EulerAngleF</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.VerID.EulerAngleF
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+<section><h2>Constructors</h2><dl>
+<dt><h3><a name="EulerAngleF()">EulerAngleF</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public EulerAngleF()</code>
+
+</dd>
+<dt><h3><a name="EulerAngleF(VerID.EulerAngle)">EulerAngleF</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public EulerAngleF(VerID.EulerAngle)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>angle <code><a href="com.appliedrec.ver_id.VerID.EulerAngle.html">com.appliedrec.ver_id.VerID.EulerAngle</a></code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="EulerAngleF(FBFace)">EulerAngleF</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public EulerAngleF(FBFace)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>face <code>com.appliedrec.detreclib.detection.FBFace</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="matchesBearing(VerID.Bearing)">matchesBearing</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public matchesBearing(VerID.Bearing)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>bearing <code><a href="com.appliedrec.ver_id.VerID.Bearing.html">com.appliedrec.ver_id.VerID.Bearing</a></code></dt>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>boolean</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="isValidForTrajectory(VerID.Bearing, VerID.Bearing)">isValidForTrajectory</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public isValidForTrajectory(VerID.Bearing, VerID.Bearing)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>from <code><a href="com.appliedrec.ver_id.VerID.Bearing.html">com.appliedrec.ver_id.VerID.Bearing</a></code></dt>
+<dt>to <code><a href="com.appliedrec.ver_id.VerID.Bearing.html">com.appliedrec.ver_id.VerID.Bearing</a></code></dt>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>boolean</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="toBearing()">toBearing</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public toBearing()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code><a href="com.appliedrec.ver_id.VerID.Bearing.html">com.appliedrec.ver_id.VerID.Bearing</a></code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Properties</h2><dl>
+<dt><h3><a name="yaw">yaw</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public float yaw</code>
+
+</dd>
+<dt><h3><a name="pitch">pitch</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public float pitch</code>
+
+</dd>
+<dt><h3><a name="roll">roll</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public float roll</code>
+
+</dd>
+</dl></section>
