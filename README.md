@@ -26,6 +26,7 @@ If you need ensure that the user in front of the camera is a live person and not
 
 Follow these steps to add Ver-ID to your Android Studio project:
 
+1. [Request an API secret](https://dev.ver-id.com/admin/register) for your app.
 1. Open your Android Studio project's **build.gradle** file and under `allprojects/repositories` add
 
 	```
