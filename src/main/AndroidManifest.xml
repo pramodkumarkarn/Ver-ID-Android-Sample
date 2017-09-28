@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="com.appliedrec.verid.apiSecret"
-            android:value="9312cbc69a969873da3d63bf8eaadb19b7f3ee4ed19a57de544dd472627d678e" />
+            android:value="6174cf972b7a4bc17e921a24f043778bb1879acc6e88316ac65fdc95d0514df3" />
     </application>
 
 </manifest>
