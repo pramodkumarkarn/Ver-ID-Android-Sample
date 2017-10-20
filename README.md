@@ -9,6 +9,12 @@ Your application will interact with Ver-ID in two tasks:
 1. To register the user's faces and add them as templates for future authentication,
 2. To authenticate the user on subsequent visits.
 
+## Documentation
+
+Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/).
+
+## Tasks
+
 ### User registration
 Before the user can authenticate Ver-ID needs to acquire a number of images of the user's face. These images serve as templates used for comparison at the time of authentication.
 Your app instructs Ver-ID to register the user. Ver-ID then attempts to register the user and returns a result of the registration session. After successful registration the user is able to authenticate using her/his face.
