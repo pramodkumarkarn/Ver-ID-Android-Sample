@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.appliedrec.ver_id.VerIDRegistrationIntent;
 import com.appliedrec.ver_id.model.VerIDUser;
 import com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings;
 import com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings;
+import com.appliedrec.ver_id.session.VerIDSessionResult;
+import com.appliedrec.ver_id.ui.VerIDActivity;
 import com.appliedrec.ver_id.util.VerIDLogSubmitter;
 
 public class MainActivity extends AppCompatActivity {
@@ -135,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // To inspect the result of the session:
+        if (resultCode == RESULT_OK && data != null && (requestCode == REGISTRATION_REQUEST_CODE || requestCode == AUTHENTICATION_REQUEST_CODE)) {
+            VerIDSessionResult result = data.getParcelableExtra(VerIDActivity.EXTRA_SESSION_RESULT);
+            // ...
+        }
         if (requestCode == REGISTRATION_REQUEST_CODE) {
             updateRegisteredUser();
             invalidateOptionsMenu();
