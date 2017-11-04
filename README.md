@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	compile 'com.appliedrec:shared:1.8.1'
-	compile 'com.appliedrec:det-rec-lib:1.8.1'
-	compile 'com.appliedrec:ver-id:1.8.1'
+	compile 'com.appliedrec:shared:2.0'
+	compile 'com.appliedrec:det-rec-lib:2.0'
+	compile 'com.appliedrec:ver-id:2.0'
 
 ## Getting Started with the Ver-ID API
 The easiest way to integrate Ver-ID to your app is to use Android's intents to launch Ver-ID activities and listen for the activity result to determine the session's outcome.
@@ -208,6 +208,12 @@ Follow these steps to ensure the user holding the device is a live person:
 Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html).
 
 # Release Notes
+
+## Changes in Version 2.0
+
+- New and improved face recognition.
+- Simpler on-screen guidance.
+
 ## Changes in Version 1.8
 
 - Added 3 [liveness detection levels](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.LivenessDetection.html). Regular (default) liveness detection no longer requires the user to register multiple poses.
