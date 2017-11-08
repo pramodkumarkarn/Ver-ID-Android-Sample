@@ -41,7 +41,7 @@ Follow these steps to add Ver-ID to your Android Studio project:
 	```
 	compile 'com.appliedrec:shared:2.0'
 	compile 'com.appliedrec:det-rec-lib:2.0'
-	compile 'com.appliedrec:ver-id:2.0'
+	compile 'com.appliedrec:verid:2.0'
 
 ## Getting Started with the Ver-ID API
 The easiest way to integrate Ver-ID to your app is to use Android's intents to launch Ver-ID activities and listen for the activity result to determine the session's outcome.

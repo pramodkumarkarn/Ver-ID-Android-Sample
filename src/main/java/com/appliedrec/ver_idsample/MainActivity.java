@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     loadingIndicatorView.setVisibility(View.GONE);
                     VerID.shared.setLogSubmitter(new VerIDLogSubmitter());
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putBoolean(getResources().getString(R.string.pref_key_enable_logging), VerID.shared.getLogEnabled())
+                            .putBoolean(getResources().getString(R.string.pref_key_enable_liveness_detection), true)
                             .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
                             .apply();
                 }
@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
         // To inspect the result of the session:
         if (resultCode == RESULT_OK && data != null && (requestCode == REGISTRATION_REQUEST_CODE || requestCode == AUTHENTICATION_REQUEST_CODE)) {
             VerIDSessionResult result = data.getParcelableExtra(VerIDActivity.EXTRA_SESSION_RESULT);
-            // ...
+            // See documentation at
+            // https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.session.VerIDSessionResult.html
         }
         if (requestCode == REGISTRATION_REQUEST_CODE) {
             updateRegisteredUser();
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     private void register() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         VerID.LivenessDetection livenessDetection = VerID.LivenessDetection.NONE;
-        if (preferences.getBoolean(getString(R.string.enable_liveness_detection), true)) {
+        if (preferences.getBoolean(getString(R.string.pref_key_enable_liveness_detection), true)) {
             livenessDetection = VerID.LivenessDetection.REGULAR;
         }
         // If your application requires an extra level of confidence on liveness detection set the livenessDetection parameter to VerID.LivenessDetection.STRICT.
