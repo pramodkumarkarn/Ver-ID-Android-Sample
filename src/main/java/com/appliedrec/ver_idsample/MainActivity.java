@@ -120,9 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     updateRegisteredUser();
                     invalidateOptionsMenu();
                     loadingIndicatorView.setVisibility(View.GONE);
-                    VerID.shared.setLogSubmitter(new VerIDLogSubmitter());
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putBoolean(getResources().getString(R.string.pref_key_enable_liveness_detection), true)
                             .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
                             .apply();
                 }
