@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><!--<h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/2.0.1/Ver-ID-login-demo-2.0.1.zip">Download demo app</a></li></ul>--><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li><li><a href="com.appliedrec.ver_id.model.LogEntry.html">LogEntry</a></li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><a href="com.appliedrec.ver_id.model.RecognitionFace.html">RecognitionFace</a></li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li></ul><h2>Interfaces</h2><ul><li><a href="com.appliedrec.ver_id.VerID.LogSubmitterListener.html">VerID.LogSubmitterListener</a></li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.html">ILogger</a></li><li><a href="com.appliedrec.ver_id.util.ILogSubmitter.html">ILogSubmitter</a></li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li><li><a href="com.appliedrec.ver_id.util.ILogger.EventType.html">ILogger.EventType</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li></ul></aside>
+</body>
+</html>
+<h1>RecognitionFace</h1>
+<h4>Package com.appliedrec.ver_id.model</h4>
+<code>public class  RecognitionFace</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.model.RecognitionFace
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+<h2>Implements</h2>
+<ul class="ancestry">
+<li>android.os.Parcelable</li>
+<li>com.appliedrec.detreclib.detection.IFace</li>
+</ul>
+<section><h2>Constructor</h2><dl>
+<dt><h3><a name="RecognitionFace(JSONObject)">RecognitionFace</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public RecognitionFace(JSONObject)</code>
+<p>Construct an instance from a JSON object</p>
+<h4>Parameters</h4>
+<dl>
+<dt>jsonObject <code>org.json.JSONObject</code></dt>
+<dd>constructed using {@link #toJson()}</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>org.json.JSONException</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="toJson()">toJson</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public toJson()</code>
+<p>Serialize the instance to a JSON object. Useful when the object needs to persist across sessions.</p>
+<h4>Returns</h4>
+<dl>
+<dt><code>org.json.JSONObject</code></dt>
+<dd>JSON representation of the face</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>org.json.JSONException</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getId()">getId</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getId()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>long</code></dt>
+<dd>Unique identifier for the face</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getEyeCoordinates()">getEyeCoordinates</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getEyeCoordinates()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>android.graphics.PointF[]</code></dt>
+<dd>Array of 2 PointF objects representing the eye coordinates. In pixels relative to the size of the original image.</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getNose()">getNose</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getNose()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>android.graphics.PointF</code></dt>
+<dd>Coordinate of the nose in pixels relative to the size of the original image.</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getMouth()">getMouth</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getMouth()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>android.graphics.PointF</code></dt>
+<dd>Coordinate of the mouth in pixels relative to the size of the original image.</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getBounds()">getBounds</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getBounds()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>android.graphics.RectF</code></dt>
+<dd>Bounding box that contains the face. Dimensions are in pixels relative to the size of the original image.</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getRotation()">getRotation</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getRotation()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>com.appliedrec.detreclib.detection.FBFace.Rotation</code></dt>
+<dd>Rotation of the face represented as Euler angle (with properties yaw, pitch and roll).</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getTemplate()">getTemplate</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getTemplate()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>float[]</code></dt>
+<dd>Face template that can be used for face comparison.</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getCenterOfFace()">getCenterOfFace</a></h3><p>Introduced in version 2.0.1</p></dt>
+<dd>
+<code>public getCenterOfFace()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>android.graphics.PointF</code></dt>
+<dd>Centre of the face. Dimensions are in pixels relative to the size of the original image.</dd>
+</dl>
+
+</dd>
+</dl></section>
