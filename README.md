@@ -213,8 +213,9 @@ Full API documentation is available on the project's [Github page](https://appli
 
 ## Changes in Version 2.0.2
 
-- Implicit loading of Ver-ID instance. You no longer need to call [`VerID.shared.load`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%LoadCallback))` before launching Ver-ID sessions. The older method with callback continues to work.
-- Added [`VerIDUsersLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUsersLoader.html) and [`VerIDUserPictureUriLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader.html) to facilitate easy asynchronous loading of Ver-ID user data. 
+- Implicit loading of Ver-ID instance. You no longer need to call [`VerID.shared.load`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%LoadCallback)) before launching Ver-ID sessions. The older method with callback continues to work.
+- Added [`VerIDUsersLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUsersLoader.html) and [`VerIDUserPictureUriLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader.html) to facilitate easy asynchronous loading of Ver-ID user data.
+- Added [`VerIDRegistrationLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDRegistrationLoader.html) and [`VerIDAuthenticationLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDAuthenticationLoader.html) for low-level access to user registration and authentication.
 
 ## Changes in Version 2.0.1
 
