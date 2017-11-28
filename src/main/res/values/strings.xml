@@ -44,4 +44,11 @@
     <string name="pref_key_enable_liveness_detection">pref_key_enable_liveness_detection</string>
     <string name="enable_liveness_detection">Enable liveness detection</string>
     <string name="liveness_detection_summary">Liveness detection prevents spoofing the Ver-ID with a picture</string>
+    <string name="pose_count">Liveness detection pose count</string>
+    <string name="pref_key_required_pose_count">pref_key_required_pose_count</string>
+    <string-array name="pose_counts">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

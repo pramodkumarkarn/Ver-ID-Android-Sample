@@ -12,5 +12,12 @@
             android:key="@string/pref_key_enable_liveness_detection"
             android:summary="@string/liveness_detection_summary"
             android:title="@string/enable_liveness_detection" />
+        <ListPreference
+            android:entries="@array/pose_counts"
+            android:entryValues="@array/pose_count_values"
+            android:key="@string/pref_key_required_pose_count"
+            android:summary="%s\nHigher pose count makes authentication more secure at the expense of usability"
+            android:defaultValue="1"
+            android:title="@string/pose_count" />
     </PreferenceCategory>
 </PreferenceScreen>

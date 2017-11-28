@@ -39,29 +39,21 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	compile 'com.appliedrec:shared:2.0.1'
-	compile 'com.appliedrec:det-rec-lib:2.0.1'
-	compile 'com.appliedrec:verid:2.0.1'
+	compile 'com.appliedrec:shared:2.0.2'
+	compile 'com.appliedrec:det-rec-lib:2.0.2'
+	compile 'com.appliedrec:verid:2.0.2'
+	```
+1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
+    
+    ~~~xml
+    <meta-data 
+       android:name="com.appliedrec.verid.apiSecret" 
+       android:value="[your API secret]" />
+    ~~~
 
 ## Getting Started with the Ver-ID API
 The easiest way to integrate Ver-ID to your app is to use Android's intents to launch Ver-ID activities and listen for the activity result to determine the session's outcome.
-You will have to load Ver-ID and authenticate your app with Ver-ID prior to calling the Ver-ID API. For example you can insert the following code in your activity's `onCreate` method.
 
-~~~java
-VerID.shared.load(this, "[your API secret]", new VerID.LoadCallback() {
-	
-	@Override
-	public void onLoad() {
-		// Ver-ID is now loaded
-	}
-	
-	@Override
-	public void onError(Exception exception) {
-		// Inspect exception to find out more
-	}
-	
-});
-~~~
 In your app's activity that needs to authenticate the user:
 
 1. Launch Ver-ID using `startActivityForResult(Intent, int)` passing an intent configured for the particular Ver-ID task.
@@ -72,8 +64,43 @@ When you no longer expect to need Ver-ID your app may call `VerID.unload()` to f
 ### <a name="registration"></a>Registration
 Following are the exact steps your application should take to register a user.
 
-1. Load Ver-ID using [`VerID.shared.load(Context,String,VerID.LoadCallback)`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%20LoadCallback)) passing your application's context. Loading Ver-ID may take a few seconds. You may want to indicate to the user that your app didn't hang. A good place to do load Ver-ID is in your activity's `onCreate` method.
-1. Check that your user is not already registered by calling [`VerID.shared.isUserRegistered(String)`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#isUserRegistered(String)) with the user's ID.
+1. Check that your user is not already registered. The easiest way to do this is to use Ver-ID's Android loader subclass [`VerIDUsersLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUsersLoader.html) with your activity implementing `LoaderManager.LoaderCallbacks<VerIDLoaderResponse>`:
+
+    ~~~java
+    public class MyActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<VerIDLoaderResponse> {
+        
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+           super.onCreate(savedInstanceState);
+           getSupportLoaderManager().initLoader(0, null, this).forceLoad();
+        }
+        
+        @Override
+        public Loader onCreateLoader(int id, Bundle args) {
+           return new VerIDUsersLoader();
+        }
+        
+        @Override
+        public void onLoadFinished(Loader loader, VerIDLoaderResponse data) {
+           if (data != null && data.getException() != null && data.getException() instanceof IllegalStateException) {
+               // Unable to load Ver-ID
+               return;
+           }
+           if (data != null && data.getResult() != null) {
+               VerIDUser[] users = (VerIDUser[])data.getResult();
+               if (users.length > 0) {
+                   // Some users are already registered. Iterate over the users array to find out 
+                   // whether the user you are trying to register is already registered.
+               }
+           }
+        }
+    
+        @Override
+        public void onLoaderReset(Loader loader) {
+           // LoaderCallbacks implementation
+        }
+    }
+    ~~~
 1. If the user is already registered authenticate her/him before registering new faces. See <a href="#authentication">Authentication</a>.
 1. In your activity configure an intent to launch a Ver-ID registration session: 
 
@@ -105,32 +132,10 @@ Following are the exact steps your application should take to register a user.
 	        }
 	    }
 	}
-	~~~	
-1. If you no longer need Ver-ID call [`VerID.unload()`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#unload()) to dispose of Ver-ID's resources. A good place to do this is in your activity's `onDestroy()` method.
+	~~~
 
 ### <a name="authentication"></a>Authentication
 Follow these steps to authenticate any user who previously registered in your app without asking for a user name or password:
-
-1. Load Ver-ID using [`VerID.shared.load(Context,String,VerID.LoadCallback)`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%20LoadCallback)) passing your application's context. Loading Ver-ID may take a few seconds. You may want to indicate to the user that your app didn't hang. A good place to do load Ver-ID is in your activity's `onCreate` method.
-1. Check that the user is registered:
-
-	~~~java
-	// Set this to your user's ID
-	String userId = "myUserId";
-	// Set to true if you wish to use anti-spoofing at authentication.
-	boolean userIsRegistered = false;
-	try {
-		VerIDUser[] users = VerID.shared.getRegisteredUsers();
-		for (VerIDUser user : users) {
-			if (user.getUserId().equals(userId)) {
-				userIsRegistered = true;
-				break;
-			}
-		}
-	} catch (Exception e) {
-		// Handle the exception
-	}
-	~~~
 
 1. In your activity configure an intent to launch a Ver-ID authentication session:
 
@@ -163,12 +168,10 @@ Follow these steps to authenticate any user who previously registered in your ap
 		}
 	}
 	~~~
-1. If you no longer need Ver-ID call [`VerID.unload()`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#unload()) to dispose of Ver-ID's resources. A good place to do this is in your activity's `onDestroy()` method.
 
 ### <a name="liveness_detection"></a>Liveness Detection
 Follow these steps to ensure the user holding the device is a live person:
 
-1. Load Ver-ID using [`VerID.shared.load(Context,String,VerID.LoadCallback)`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%20LoadCallback)) passing your application's context. Loading Ver-ID may take a few seconds. You may want to indicate to the user that your app didn't hang. A good place to do load Ver-ID is in your activity's `onCreate` method.
 1. In your activity configure an intent to launch a Ver-ID liveness detection session:
 
 	~~~java
@@ -201,13 +204,17 @@ Follow these steps to ensure the user holding the device is a live person:
 		}
 	}
 	~~~
-1. If you no longer need Ver-ID call [`VerID.unload()`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#unload()) to dispose of Ver-ID's resources. A good place to do this is in your activity's `onDestroy()` method.
 
 ## Documentation
 
 Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html).
 
 # Release Notes
+
+## Changes in Version 2.0.2
+
+- Implicit loading of Ver-ID instance. You no longer need to call [`VerID.shared.load`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html#load(Context,%20String,%LoadCallback))` before launching Ver-ID sessions. The older method with callback continues to work.
+- Added [`VerIDUsersLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUsersLoader.html) and [`VerIDUserPictureUriLoader`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader.html) to facilitate easy asynchronous loading of Ver-ID user data. 
 
 ## Changes in Version 2.0.1
 

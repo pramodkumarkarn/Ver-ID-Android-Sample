@@ -13,4 +13,9 @@
         <item>STRICT</item>
     </string-array>
     <string name="antispoofing_level_default_value">REGULAR</string>
+    <string-array name="pose_count_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

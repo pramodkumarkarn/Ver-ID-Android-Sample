@@ -7,31 +7,36 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.appliedrec.ver_id.VerID;
 import com.appliedrec.ver_id.VerIDAuthenticationIntent;
 import com.appliedrec.ver_id.VerIDRegistrationIntent;
+import com.appliedrec.ver_id.loaders.VerIDLoaderResponse;
+import com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader;
+import com.appliedrec.ver_id.loaders.VerIDUsersLoader;
 import com.appliedrec.ver_id.model.VerIDUser;
 import com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings;
 import com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings;
 import com.appliedrec.ver_id.session.VerIDSessionResult;
 import com.appliedrec.ver_id.ui.VerIDActivity;
-import com.appliedrec.ver_id.util.VerIDLogSubmitter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<VerIDLoaderResponse> {
 
     static final int AUTHENTICATION_REQUEST_CODE = 1;
     static final int REGISTRATION_REQUEST_CODE = 2;
+    private static final int USER_LOADER_ID = 1;
+    private static final int USER_PICTURE_LOADER_ID = 2;
 
     private VerIDUser verIDUser;
+    private Uri profileImageUri = null;
     private Button authenticateButton;
     private Button registerButton;
     private View loadingIndicatorView;
@@ -63,12 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
         profileImageView = (ImageView) findViewById(R.id.profileImage);
         scrollView = findViewById(R.id.scrollView);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        VerID.shared.unload();
+        loadRegisteredUser();
     }
 
     @Override
@@ -94,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 if (verIDUser != null) {
                     try {
                         VerID.shared.deregisterUser(verIDUser.getUserId());
-                        updateRegisteredUser();
-                        invalidateOptionsMenu();
+                        loadRegisteredUser();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -109,31 +108,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        // Ensure Ver-ID is loaded
-        VerID.shared.load(this, new VerID.LoadCallback() {
-            @Override
-            public void onLoad() {
-                if (!isDestroyed() && !isFinishing()) {
-                    // Ver-ID is loaded, hide progress indicator and show buttons
-                    updateRegisteredUser();
-                    invalidateOptionsMenu();
-                    loadingIndicatorView.setVisibility(View.GONE);
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
-                            .apply();
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-                throw new RuntimeException(getString(R.string.verid_failed_to_load), e);
-            }
-        });
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // To inspect the result of the session:
@@ -143,25 +117,33 @@ public class MainActivity extends AppCompatActivity {
             // https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.session.VerIDSessionResult.html
         }
         if (requestCode == REGISTRATION_REQUEST_CODE) {
-            updateRegisteredUser();
-            invalidateOptionsMenu();
+            loadRegisteredUser();
         }
     }
 
+    /**
+     * Use a loader to retrieve the registered user in the background
+     * This task may take a while if Ver-ID has not yet finished loading
+     */
+    private void loadRegisteredUser() {
+        getSupportLoaderManager().initLoader(USER_LOADER_ID, null, this).forceLoad();
+    }
+
+    /**
+     * Show register and authenticate buttons if Ver-ID is loaded
+     */
+    private void updateButtonVisibility() {
+        int buttonVisibility = VerID.shared.isLoaded() ? View.VISIBLE : View.GONE;
+        int loadingIndicatorVisibility = VerID.shared.isLoaded() ? View.GONE : View.VISIBLE;
+        registerButton.setVisibility(buttonVisibility);
+        authenticateButton.setVisibility(buttonVisibility);
+        loadingIndicatorView.setVisibility(loadingIndicatorVisibility);
+    }
+
+    /**
+     * Update UI showing a user profile picture if available
+     */
     private void updateRegisteredUser() {
-        // Get the registered user from the database
-        Uri profileImageUri = null;
-        try {
-            VerIDUser[] users = VerID.shared.getRegisteredVerIDUsers();
-            if (users.length > 0) {
-                verIDUser = users[0];
-                profileImageUri = VerID.shared.getUserProfilePictureUri(verIDUser.getUserId());
-            } else {
-                verIDUser = null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         profileImageView.setImageDrawable(null);
         if (profileImageUri != null) {
             profileImageView.setImageURI(profileImageUri);
@@ -171,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
             profileImageView.setVisibility(View.GONE);
             scrollView.setVisibility(View.VISIBLE);
         }
-        registerButton.setVisibility(View.VISIBLE);
-        authenticateButton.setVisibility(View.VISIBLE);
         authenticateButton.setEnabled(verIDUser != null);
         if (verIDUser != null) {
             registerButton.setText(R.string.register_more_faces);
@@ -181,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Start a registration session with liveness detection settings loaded from preferences
+     */
     private void register() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         VerID.LivenessDetection livenessDetection = VerID.LivenessDetection.NONE;
@@ -192,6 +175,10 @@ public class MainActivity extends AppCompatActivity {
         register(livenessDetection);
     }
 
+    /**
+     * Start a registration session
+     * @param livenessDetection Requested liveness detection setting
+     */
     private void register(VerID.LivenessDetection livenessDetection) {
         VerIDRegistrationSessionSettings settings = new VerIDRegistrationSessionSettings(VerIDUser.DEFAULT_USER_ID, livenessDetection);
         // Setting showGuide to false will prevent the activity from displaying a guide on how to register
@@ -202,8 +189,10 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REGISTRATION_REQUEST_CODE);
     }
 
+    /**
+     * Start a face authentication session
+     */
     private void authenticate() {
-        // Authenticate using face
         if (verIDUser == null) {
             return;
         }
@@ -215,6 +204,12 @@ public class MainActivity extends AppCompatActivity {
         // If your application requires an extra level of confidence on liveness detection set the livenessDetection parameter to VerID.LivenessDetection.STRICT.
         // Note that strict liveness detection requires the user to also be registered with the STRICT level of liveness detection. This negatively affects the user experience.
         VerIDAuthenticationSessionSettings settings = new VerIDAuthenticationSessionSettings(verIDUser.getUserId(), livenessDetection);
+        if (livenessDetection != VerID.LivenessDetection.NONE) {
+            // This setting dictates how many poses the user will be required to move her/his head to to ensure liveness
+            // The higher the count the more confident we can be of a live face at the expense of usability
+            // Note that 1 is added to the setting to include the initial mandatory straight pose
+            settings.requiredNumberOfSegments = Integer.parseInt(preferences.getString(getString(R.string.pref_key_required_pose_count), "1")) + 1;
+        }
         // Setting showGuide to false will prevent the activity from displaying a guide on how to authenticate
         settings.showGuide = true;
         // Setting showResult to false will prevent the activity from displaying a result at the end of the session
@@ -239,5 +234,65 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // User data loader
+
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case USER_LOADER_ID:
+                // Loads registered users
+                return new VerIDUsersLoader(this);
+            case USER_PICTURE_LOADER_ID:
+                // Loads the profile picture of the given registered user
+                return new VerIDUserPictureUriLoader(this, verIDUser.getUserId());
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, VerIDLoaderResponse data) {
+        if (data != null && data.getException() != null && data.getException() instanceof IllegalStateException) {
+            // Unable to load Ver-ID
+            throw new RuntimeException(getString(R.string.verid_failed_to_load), ((VerIDLoaderResponse)data).getException());
+        }
+        switch (loader.getId()) {
+            case USER_LOADER_ID:
+                profileImageUri = null;
+                verIDUser = null;
+                if (data.getException() == null && data.getResult() != null) {
+                    // Update preferences
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
+                            .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
+                            .apply();
+                    VerIDUser[] users = (VerIDUser[]) data.getResult();
+                    if (users.length > 0) {
+                        verIDUser = users[0];
+                        // Load the profile picture
+                        getSupportLoaderManager().initLoader(USER_PICTURE_LOADER_ID, null, this).forceLoad();
+                        return;
+                    }
+                }
+                break;
+            case USER_PICTURE_LOADER_ID:
+                if (data.getException() == null && data.getResult() != null) {
+                    profileImageUri = (Uri) data.getResult();
+                }
+                break;
+        }
+        updateRegisteredUser();
+        invalidateOptionsMenu();
+        updateButtonVisibility();
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+        verIDUser = null;
+        profileImageUri = null;
+        updateRegisteredUser();
+        invalidateOptionsMenu();
+        updateButtonVisibility();
     }
 }
