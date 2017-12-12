@@ -27,6 +27,7 @@ import com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings;
 import com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings;
 import com.appliedrec.ver_id.session.VerIDSessionResult;
 import com.appliedrec.ver_id.ui.VerIDActivity;
+import com.appliedrec.ver_id.ui.VerIDAuthenticationTrainingActivity;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<VerIDLoaderResponse> {
 
@@ -204,11 +205,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // If your application requires an extra level of confidence on liveness detection set the livenessDetection parameter to VerID.LivenessDetection.STRICT.
         // Note that strict liveness detection requires the user to also be registered with the STRICT level of liveness detection. This negatively affects the user experience.
         VerIDAuthenticationSessionSettings settings = new VerIDAuthenticationSessionSettings(verIDUser.getUserId(), livenessDetection);
-        if (livenessDetection != VerID.LivenessDetection.NONE) {
-            // This setting dictates how many poses the user will be required to move her/his head to to ensure liveness
-            // The higher the count the more confident we can be of a live face at the expense of usability
-            // Note that 1 is added to the setting to include the initial mandatory straight pose
-            settings.requiredNumberOfSegments = Integer.parseInt(preferences.getString(getString(R.string.pref_key_required_pose_count), "1")) + 1;
+        // This setting dictates how many poses the user will be required to move her/his head to to ensure liveness
+        // The higher the count the more confident we can be of a live face at the expense of usability
+        // Note that 1 is added to the setting to include the initial mandatory straight pose
+        settings.numberOfResultsToCollect = Integer.parseInt(preferences.getString(getString(R.string.pref_key_required_pose_count), "1")) + 1;
+        if (settings.numberOfResultsToCollect == 1) {
+            // Turn off liveness detection if only one pose is requested
+            settings.livenessDetection = VerID.LivenessDetection.NONE;
         }
         // Setting showGuide to false will prevent the activity from displaying a guide on how to authenticate
         settings.showGuide = true;

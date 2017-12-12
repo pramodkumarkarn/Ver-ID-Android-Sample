@@ -46,9 +46,12 @@
     <string name="liveness_detection_summary">Liveness detection prevents spoofing the Ver-ID with a picture</string>
     <string name="pose_count">Liveness detection pose count</string>
     <string name="pref_key_required_pose_count">pref_key_required_pose_count</string>
+    <string name="face_detection_test">Face detection test</string>
     <string-array name="pose_counts">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>Liveness detection off</item>
+        <item>Require 1 pose</item>
+        <item>Require 2 poses</item>
+        <item>Require 3 poses</item>
+        <item>Require 4 poses</item>
     </string-array>
 </resources>

@@ -7,11 +7,6 @@
             android:key="@string/pref_key_security_level"
             android:summary="%s\nHigher levels lower the false acceptance rate (FAR) at the expense of false rejection rate (FRR)"
             android:title="@string/security_level" />
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="@string/pref_key_enable_liveness_detection"
-            android:summary="@string/liveness_detection_summary"
-            android:title="@string/enable_liveness_detection" />
         <ListPreference
             android:entries="@array/pose_counts"
             android:entryValues="@array/pose_count_values"

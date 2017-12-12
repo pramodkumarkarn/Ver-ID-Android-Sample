@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	compile 'com.appliedrec:shared:2.0.2'
-	compile 'com.appliedrec:det-rec-lib:2.0.2'
-	compile 'com.appliedrec:verid:2.0.2'
+	compile 'com.appliedrec:shared:2.0.3'
+	compile 'com.appliedrec:det-rec-lib:2.0.3'
+	compile 'com.appliedrec:verid:2.0.3'
 	```
 1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
     
@@ -204,12 +204,73 @@ Follow these steps to ensure the user holding the device is a live person:
 		}
 	}
 	~~~
+	
+## <a name="advanced_use"></a>Advanced Use
+
+Ver-ID provides low-level functions for face detection and recognition if you prefer to supply the images yourself.
+
+### Face detection
+
+~~~java
+Bitmap bitmap = BitmapFactory.decodeFile("/path/to/myImage.jpg");
+if (bitmap == null) {
+	return;
+}
+boolean keepFaceForRecognition = true;
+boolean strictBearingMatching = false;
+VerIDFace face;
+try {
+	face = VerID.shared.detectFaceInImage(bitmap, keepFaceForRecognition, strictBearingMatching);
+} catch (Exception exception) {
+	return;
+}
+~~~
+
+### Registration
+
+~~~java
+String userId = "myUserId";
+boolean appendToExistingUser = true;
+VerIDUser user;
+try {
+	user = VerID.shared.registerFacesAsUser(new VerIDFace[]{face}, userId, appendToExistingUser);
+} catch (Exception exception) {
+	return;
+}
+~~~
+
+### Authentication
+
+~~~java
+boolean authenticated;
+try {
+	authenticated = VerID.shared.authenticateUserInFaces(user.getUserId(), new VerIDFace[]{face}, strictBearingMatching);
+} catch (Exception exception) {
+	return;
+}
+if (authenticated) {
+    // The user is authenticated
+}
+~~~
+
+### Cleanup
+
+Discard the faces used for authentication. Keep the faces that were used for registration.
+
+~~~java
+VerID.shared.discardFaces(new VerIDFace[]{face});
+~~~
 
 ## Documentation
 
 Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html).
 
 # Release Notes
+
+## Changes in Version 2.0.3
+
+- Exposed [low-level functions](#advanced_use) for face detection, user registration and authentication.
+- Bug fixes.
 
 ## Changes in Version 2.0.2
 
