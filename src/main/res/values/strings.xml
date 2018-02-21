@@ -47,6 +47,17 @@
     <string name="pose_count">Liveness detection pose count</string>
     <string name="pref_key_required_pose_count">pref_key_required_pose_count</string>
     <string name="face_detection_test">Face detection test</string>
+    <string name="verid_person_sdk">Ver-ID Person SDK</string>
+    <string name="one_registration">1. Registration</string>
+    <string name="two_authentication">2. Authentication</string>
+    <string name="verid_person_sdk_text">This app demonstrates how Ver-ID performs two common user authentication tasks.</string>
+    <string name="one_registration_text">The app collects images of your face and stores them as templates.</string>
+    <string name="two_authentication_text">The app captures images of you and verifies them against the templates collected at registration.</string>
+    <string name="about">About</string>
+    <string name="loading_verid">Loading Ver-ID</string>
+    <string name="registered">Registered</string>
+    <string name="unregister">Unregister</string>
+    <string name="confirm_unregister">Unregister?</string>
     <string-array name="pose_counts">
         <item>Liveness detection off</item>
         <item>Require 1 pose</item>

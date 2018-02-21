@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
-
+    <style name="TextAppearance.AppCompat.Body1" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_body_1_material</item>
+    </style>
+    <style name="TextAppearance.AppCompat.Title" parent="android:TextAppearance">
+        <item name="android:textSize">@dimen/text_size_title_material</item>
+    </style>
 </resources>

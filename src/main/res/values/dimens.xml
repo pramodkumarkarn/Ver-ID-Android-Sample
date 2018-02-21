@@ -5,4 +5,6 @@
     <dimen name="half_padding">8dp</dimen>
     <dimen name="default_padding">16dp</dimen>
     <dimen name="double_padding">32dp</dimen>
+    <dimen name="text_size_body_1_material">18dp</dimen>
+    <dimen name="text_size_title_material">32dp</dimen>
 </resources>
