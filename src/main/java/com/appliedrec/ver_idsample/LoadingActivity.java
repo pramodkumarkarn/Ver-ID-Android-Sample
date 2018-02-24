@@ -51,7 +51,7 @@ public class LoadingActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<VerIDLoaderResponse> loader, VerIDLoaderResponse data) {
-        if (data != null && data.getException() != null && data.getException() instanceof IllegalStateException) {
+        if (data != null && data.getException() != null && ((data.getException() instanceof IllegalStateException) || (data.getException().getCause() != null && data.getException().getCause() instanceof IllegalStateException))) {
             // Unable to load Ver-ID
             throw new RuntimeException(getString(R.string.verid_failed_to_load), ((VerIDLoaderResponse)data).getException());
         }

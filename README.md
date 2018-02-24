@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	compile 'com.appliedrec:shared:2.0.7'
-	compile 'com.appliedrec:det-rec-lib:2.0.7'
-	compile 'com.appliedrec:verid:2.0.7'
+	compile 'com.appliedrec:shared:3.0.0'
+	compile 'com.appliedrec:det-rec-lib:3.0.0'
+	compile 'com.appliedrec:verid:3.0.0'
 	```
 1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
     
@@ -50,6 +50,14 @@ Follow these steps to add Ver-ID to your Android Studio project:
        android:name="com.appliedrec.verid.apiSecret" 
        android:value="[your API secret]" />
     ~~~
+1. [Download resources](https://dev.ver-id.com/artifactory/gradle-release/com/appliedrec/resources/android/3.0.0/resources-3.0.0.zip) and unzip them to a **VerIDModels** folder in your app's **assets** folder. 
+2. As an alternative to the previous step, specify a URL from which to download the resources. This will reduce the download size of your app. In the app's manifest file:
+	
+	~~~xml
+	<meta-data 
+       android:name="com.appliedrec.verid.resourcesURL" 
+       android:value="http://my.domain.com/path/to/resources.zip" />
+	~~~
 
 ## Getting Started with the Ver-ID API
 The easiest way to integrate Ver-ID to your app is to use Android's intents to launch Ver-ID activities and listen for the activity result to determine the session's outcome.
@@ -266,6 +274,11 @@ VerID.shared.discardFaces(new VerIDFace[]{face});
 Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html).
 
 # Release Notes
+
+## Changes in Version 3.0.0
+- Reduced download size of the library:
+	- Ver-ID's resources like model files are no longer bundled with the library. Resource files need to be bundled in your app's assets folder.
+	- Ver-ID's resources may also be loaded from a URL you specify when loading the library.
 
 ## Changes in Version 2.0.7
 - Updated style on guide screens.
