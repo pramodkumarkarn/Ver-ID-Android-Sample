@@ -58,6 +58,8 @@
     <string name="registered">Registered</string>
     <string name="unregister">Unregister</string>
     <string name="confirm_unregister">Unregister?</string>
+    <string name="failed_to_load_users">Failed to load registered users</string>
+    <string name="unexpected_error">Unexpected error</string>
     <string-array name="pose_counts">
         <item>Liveness detection off</item>
         <item>Require 1 pose</item>

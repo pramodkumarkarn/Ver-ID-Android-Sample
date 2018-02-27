@@ -56,7 +56,12 @@ public class LoadingActivity extends AppCompatActivity implements LoaderManager.
             throw new RuntimeException(getString(R.string.verid_failed_to_load), ((VerIDLoaderResponse)data).getException());
         }
         if (loader.getId() == USER_LOADER_ID) {
-            assert data.getException() == null && data.getResult() != null;
+            if (data.getException() != null) {
+                throw new RuntimeException(getString(R.string.failed_to_load_users), data.getException());
+            }
+            if (data.getResult() == null) {
+                throw new RuntimeException(getString(R.string.unexpected_error));
+            }
             // Update preferences
             PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
                     .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
