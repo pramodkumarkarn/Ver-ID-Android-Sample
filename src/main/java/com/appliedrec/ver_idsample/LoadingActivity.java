@@ -66,11 +66,15 @@ public class LoadingActivity extends AppCompatActivity implements LoaderManager.
             PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
                     .putString(getResources().getString(R.string.pref_key_security_level), Integer.toString(VerID.shared.getSecurityLevel().ordinal()))
                     .apply();
-            VerIDUser[] users = (VerIDUser[]) data.getResult();
-            if (users.length > 0) {
-                showRegisteredUser(users[0]);
-            } else {
-                showIntro();
+            try {
+                VerIDUser[] users = (VerIDUser[]) data.getResult();
+                if (users != null && users.length > 0) {
+                    showRegisteredUser(users[0]);
+                } else {
+                    showIntro();
+                }
+            } catch (ClassCastException e) {
+                throw new RuntimeException(e);
             }
         }
     }
