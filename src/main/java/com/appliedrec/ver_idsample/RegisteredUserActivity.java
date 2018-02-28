@@ -49,10 +49,12 @@ public class RegisteredUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered_user);
-        assert getIntent() != null;
-        user = getIntent().getParcelableExtra(EXTRA_USER);
-        assert user != null;
-        loadProfilePicture();
+        if (getIntent() != null) {
+            user = getIntent().getParcelableExtra(EXTRA_USER);
+            if (user != null) {
+                loadProfilePicture();
+            }
+        }
         findViewById(R.id.removeButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,19 +116,27 @@ public class RegisteredUserActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         Bitmap colourBitmap = VerID.shared.getUserProfilePicture(user.getUserId());
-                        assert colourBitmap != null;
-                        byte[] grayscale = VerID.shared.getPlatformUtils().bitmapToGrayscale(colourBitmap, ExifInterface.ORIENTATION_NORMAL);
-                        Bitmap grayscaleBitmap = VerID.shared.getPlatformUtils().grayscaleToBitmap(grayscale, colourBitmap.getWidth(), colourBitmap.getHeight());
-                        grayscaleBitmap = Bitmap.createBitmap(grayscaleBitmap, 0, (int)((double)grayscaleBitmap.getHeight() / 2.0 - (double)grayscaleBitmap.getWidth() / 2.0), grayscaleBitmap.getWidth(), grayscaleBitmap.getWidth());
-                        grayscaleBitmap = Bitmap.createScaledBitmap(grayscaleBitmap, width, width, true);
-                        final RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), grayscaleBitmap);
-                        roundedBitmapDrawable.setCornerRadius((float)width/2f);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                profileImageView.setImageDrawable(roundedBitmapDrawable);
+                        if (colourBitmap != null) {
+                            byte[] grayscale = VerID.shared.getPlatformUtils().bitmapToGrayscale(colourBitmap, ExifInterface.ORIENTATION_NORMAL);
+                            Bitmap grayscaleBitmap;
+                            if (grayscale != null) {
+                                grayscaleBitmap = VerID.shared.getPlatformUtils().grayscaleToBitmap(grayscale, colourBitmap.getWidth(), colourBitmap.getHeight());
+                            } else {
+                                grayscaleBitmap = colourBitmap;
                             }
-                        });
+                            if (grayscaleBitmap != null) {
+                                grayscaleBitmap = Bitmap.createBitmap(grayscaleBitmap, 0, (int) ((double) grayscaleBitmap.getHeight() / 2.0 - (double) grayscaleBitmap.getWidth() / 2.0), grayscaleBitmap.getWidth(), grayscaleBitmap.getWidth());
+                                grayscaleBitmap = Bitmap.createScaledBitmap(grayscaleBitmap, width, width, true);
+                                final RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), grayscaleBitmap);
+                                roundedBitmapDrawable.setCornerRadius((float) width / 2f);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        profileImageView.setImageDrawable(roundedBitmapDrawable);
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
             }
