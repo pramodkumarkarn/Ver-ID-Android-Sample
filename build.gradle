@@ -22,7 +22,7 @@ android {
         applicationId "com.appliedrec.ver_idsample"
         minSdkVersion 18
         targetSdkVersion 25
-        versionName = "3.0.1"
+        versionName = "3.0.2"
         archivesBaseName = "ver-id-sample"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,9 +38,9 @@ android {
 }
 
 dependencies {
-    compile 'com.appliedrec:det-rec-lib:3.0.1'
-    compile 'com.appliedrec:shared:3.0.1'
-    compile 'com.appliedrec:verid:3.0.1'
+    compile 'com.appliedrec:det-rec-lib:3.0.2'
+    compile 'com.appliedrec:shared:3.0.2'
+    compile 'com.appliedrec:verid:3.0.2'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }
