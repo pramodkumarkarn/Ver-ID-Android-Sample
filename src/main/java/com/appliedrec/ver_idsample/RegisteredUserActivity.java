@@ -125,7 +125,10 @@ public class RegisteredUserActivity extends AppCompatActivity {
                                 grayscaleBitmap = colourBitmap;
                             }
                             if (grayscaleBitmap != null) {
-                                grayscaleBitmap = Bitmap.createBitmap(grayscaleBitmap, 0, (int) ((double) grayscaleBitmap.getHeight() / 2.0 - (double) grayscaleBitmap.getWidth() / 2.0), grayscaleBitmap.getWidth(), grayscaleBitmap.getWidth());
+                                int size = Math.min(grayscaleBitmap.getWidth(), grayscaleBitmap.getHeight());
+                                int x = (int) ((double) grayscaleBitmap.getWidth() / 2.0 - (double) size / 2.0);
+                                int y = (int) ((double) grayscaleBitmap.getHeight() / 2.0 - (double) size / 2.0);
+                                grayscaleBitmap = Bitmap.createBitmap(grayscaleBitmap, x, y, size, size);
                                 grayscaleBitmap = Bitmap.createScaledBitmap(grayscaleBitmap, width, width, true);
                                 final RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), grayscaleBitmap);
                                 roundedBitmapDrawable.setCornerRadius((float) width / 2f);
