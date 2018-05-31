@@ -1,9 +1,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.2'
     }
 }
 
@@ -16,7 +17,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.appliedrec.ver_idsample"
@@ -38,9 +39,9 @@ android {
 }
 
 dependencies {
-    compile 'com.appliedrec:det-rec-lib:3.0.3'
-    compile 'com.appliedrec:shared:3.0.3'
-    compile 'com.appliedrec:verid:3.0.3'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.appliedrec:det-rec-lib:3.0.3'
+    implementation 'com.appliedrec:shared:3.0.3'
+    implementation 'com.appliedrec:verid:3.0.3'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 }
