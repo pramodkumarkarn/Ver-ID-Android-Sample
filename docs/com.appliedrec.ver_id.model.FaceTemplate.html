@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><!--<h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/4.0.0/Ver-ID-login-demo-4.0.0.zip">Download demo app</a></li></ul>--><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li><li><span class="deprecated">LogEntry</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><span class="deprecated">RecognitionFace</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.UserManager.html">UserManager</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader.html">VerIDUserPictureUriLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDUsersLoader.html">VerIDUsersLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDRegistrationLoader.html">VerIDRegistrationLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDLoader.html">VerIDLoader</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li></ul><h2>Interfaces</h2><ul><li><span class="deprecated">VerID.LogSubmitterListener</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li><li><span class="deprecated">ILogger</span> (deprecated)</li><li><span class="deprecated">ILogSubmitter</span> (deprecated)</li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li><li><span class="deprecated">ILogger.EventType</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li></ul></aside>
+</body>
+</html>
+<h1>FaceTemplate</h1>
+<h4>Package com.appliedrec.ver_id.model</h4>
+<code>public class  FaceTemplate</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.model.FaceTemplate
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+<h2>Implements</h2>
+<ul class="ancestry">
+<li>android.os.Parcelable</li>
+</ul>
+<section><h2>Constructor</h2><dl>
+<dt><h3><a name="FaceTemplate(byte[], int)">FaceTemplate</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public FaceTemplate(byte[], int)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>data <code>byte[]</code></dt>
+<dt>version <code>int</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="describeContents()">describeContents</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public describeContents()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>int</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="writeToParcel(Parcel, int)">writeToParcel</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public writeToParcel(Parcel, int)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>dest <code>android.os.Parcel</code></dt>
+<dt>flags <code>int</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="fromJSON(String)">fromJSON</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public static fromJSON(String)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>jsonString <code>java.lang.String</code></dt>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>org.json.JSONException</code></dt>
+<dt><code>com.appliedrec.ver_id.model.FaceTemplate.UnsupportedVersionError</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getData()">getData</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public getData()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>byte[]</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="isEqualTo(FaceTemplate)">isEqualTo</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public isEqualTo(FaceTemplate)</code>
+<h4>Parameters</h4>
+<dl>
+<dt>otherTemplate <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>boolean</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getComparisonTemplate()">getComparisonTemplate</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public getComparisonTemplate()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>float[]</code></dt>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getBearing()">getBearing</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public getBearing()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>com.appliedrec.ver_id.VerID.Bearing</code></dt>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="toJSON()">toJSON</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public toJSON()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>java.lang.String</code></dt>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>org.json.JSONException</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="toString()">toString</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public toString()</code>
+<h4>Returns</h4>
+<dl>
+<dt><code>java.lang.String</code></dt>
+</dl>
+
+</dd>
+</dl></section>
+<section><h2>Properties</h2><dl>
+<dt><h3><a name="MAX_SUPPORTED_VERSION">MAX_SUPPORTED_VERSION</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public static final int MAX_SUPPORTED_VERSION</code>
+
+</dd>
+<dt><h3><a name="CREATOR">CREATOR</a></h3><p>Introduced in version </p></dt>
+<dd>
+<code>public static final Parcelable.Creator CREATOR</code>
+
+</dd>
+</dl></section>

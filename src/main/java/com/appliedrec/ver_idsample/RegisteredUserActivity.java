@@ -192,10 +192,8 @@ public class RegisteredUserActivity extends AppCompatActivity {
         settings.numberOfResultsToCollect = Integer.parseInt(preferences.getString(getString(R.string.pref_key_required_pose_count), "1")) + 1;
         if (settings.numberOfResultsToCollect == 1) {
             // Turn off liveness detection if only one pose is requested
-            settings.livenessDetection = VerID.LivenessDetection.NONE;
+            settings.setLivenessDetection(VerID.LivenessDetection.NONE);
         }
-        // Setting showGuide to false will prevent the activity from displaying a guide on how to authenticate
-        settings.showGuide = true;
         // Setting showResult to false will prevent the activity from displaying a result at the end of the session
         settings.showResult = true;
         settings.videoURL = Uri.parse(new File(getFilesDir(), "video.mp4").getPath());
@@ -234,8 +232,6 @@ public class RegisteredUserActivity extends AppCompatActivity {
 
     private void registerMoreFaces(VerID.LivenessDetection livenessDetection) {
         VerIDRegistrationSessionSettings settings = new VerIDRegistrationSessionSettings(VerIDUser.DEFAULT_USER_ID, livenessDetection);
-        // Setting showGuide to false will prevent the activity from displaying a guide on how to register
-        settings.showGuide = true;
         // Setting showResult to false will prevent the activity from displaying a result at the end of the session
         settings.showResult = true;
         settings.appendIfUserExists = true;

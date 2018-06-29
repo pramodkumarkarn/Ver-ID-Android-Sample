@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	compile 'com.appliedrec:shared:3.0.3'
-	compile 'com.appliedrec:det-rec-lib:3.0.3'
-	compile 'com.appliedrec:verid:3.0.3'
+	implementation 'com.appliedrec:shared:4.0.0'
+	implementation 'com.appliedrec:det-rec-lib:4.0.0'
+	implementation 'com.appliedrec:verid:4.0.0'
 	```
 1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
     
@@ -213,6 +213,110 @@ Follow these steps to ensure the user holding the device is a live person:
 	}
 	~~~
 	
+## <a name="user_management"></a>User Management
+
+The [`UserManager`](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.UserManager.html) class allows you to export and import registered users' face templates for use on your back end or to share them among multiple devices.
+
+### Adding users
+
+There are two ways to add users:
+
+1. Run a registration session from your activity.
+
+	~~~java
+	VerIDRegistrationSessionSettings settings = new VerIDRegistrationSessionSettings(userId);
+	Intent intent = new VerIDRegistrationIntent(this, settings);
+	startActivity(intent);
+	~~~
+
+2. Register user from an image:
+
+	~~~java
+	Bitmap bitmap = BitmapFactory.decodeFile("/path/to/myImage.jpg");
+	if (bitmap == null) {
+	    return;
+	}
+	boolean keepFaceForRecognition = true;
+	boolean strictBearingMatching = false;
+	boolean appendToExistingUser = true;
+	try {
+	    VerIDFace face = VerID.shared.detectFaceInImage(bitmap, keepFaceForRecognition, strictBearingMatching);
+	    VerIDUser user = VerID.shared.registerFacesAsUser(new VerIDFace[]{face}, userId, appendToExistingUser);
+	} catch (Exception exception) {
+	}
+	~~~
+	
+### Exporting users' face templates
+
+~~~java
+UserManager userManager = new UserManager();
+Map<String,FaceTemplate[]> exported = userManager.exportFaceTemplates(new UserManager.Callback<Map<String, FaceTemplate[]>>() {
+    @Override
+    public void onSuccess(Map<String, FaceTemplate[]> result) {
+        JSONObject jsonObject = new JSONObject();
+        Iterator<Map.Entry<String,FaceTemplate[]>> iterator = result.entrySet().iterator();
+        while (iterator.hasNext()) {
+            try {
+                Map.Entry<String,FaceTemplate[]> entry = iterator.next();
+                JSONArray templateArray = new JSONArray();
+                for (FaceTemplate template : entry.getValue()) {
+                    JSONObject templateObject = new JSONObject(template.toJSON());
+                    templateArray.put(templateObject);
+                }
+                jsonObject.put(entry.getKey(), templateArray);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        // You now have a JSON object with your users' face templates
+    }
+
+    @Override
+    public void onFailure(Exception exception) {
+
+    }
+});
+~~~
+
+### Importing face templates
+
+~~~java
+UserManager userManager = new UserManager();
+JSONObject faceTemplates = ...; // JSON object with serialized face templates
+HashMap<String, FaceTemplate[]> templatesToImport = new HashMap<>();
+Iterator<String> keyIterator = jsonObject.keys();
+while (keyIterator.hasNext()) {
+    String userId = keyIterator.next();
+    try {
+        JSONArray templateArray = jsonObject.getJSONArray(userId);
+        FaceTemplate[] faceTemplates = new FaceTemplate[templateArray.length()];
+        for (int i=0; i<templateArray.length(); i++) {
+            String templateString = templateArray.getString(i);
+            FaceTemplate template = FaceTemplate.fromJSON(templateString);
+            faceTemplates[i] = template;
+        }
+        templatesToImport.put(userId, faceTemplates);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    } catch (FaceTemplate.UnsupportedVersionError e) {
+        e.printStackTrace();
+    }
+}
+if (!templatesToImport.isEmpty()) {
+    userManager.importFaceTemplates(templatesToImport, new UserManager.Callback<Void>() {
+        @Override
+        public void onSuccess(Void result) {
+            // Templates imported
+        }
+
+        @Override
+        public void onFailure(Exception exception) {
+
+        }
+    });
+}
+~~~
+	
 ## <a name="advanced_use"></a>Advanced Use
 
 Ver-ID provides low-level functions for face detection and recognition if you prefer to supply the images yourself.
@@ -275,8 +379,17 @@ Full API documentation is available on the project's [Github page](https://appli
 
 # Release Notes
 
+## Changes in Version 4.0.0
+- Plenty of bug fixes
+- `livenessDetection` on `VerIDRegistrationSessionSettings` and `VerIDRegistrationSessionSettings` is now private and may only be accessed by its corresponding getter and setter methods: `getLivenessDetectio()` and `setLivenessDetection(VerID.LivenessDetection livenessDetection)`.
+- Deprecated event logging classes.
+
+## Changes in Version 3.1.0
+- Added [user manager](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.UserManager.html)
+
 ## Changes in Version 3.0.2
 - Concurrency bug fixes.
+
 ## Changes in Version 3.0.1
 - Fixed unserializing of object arrays on older versions of Android.
 

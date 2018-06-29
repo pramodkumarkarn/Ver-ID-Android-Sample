@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ver-ID API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<aside><!--<h2>Overview</h2><ul><li><a href="index.html">Getting started</a></li><li><a href="/demo/login/4.0.0/Ver-ID-login-demo-4.0.0.zip">Download demo app</a></li></ul>--><h2>Classes</h2><ul><li><a href="com.appliedrec.ver_id.ui.VerIDActivity.html">VerIDActivity</a></li><li><a href="com.appliedrec.ver_id.VerID.html">VerID</a></li><li><a href="com.appliedrec.ver_id.VerIDLivenessDetectionIntent.html">VerIDLivenessDetectionIntent</a></li><li><a href="com.appliedrec.ver_id.VerIDRegistrationIntent.html">VerIDRegistrationIntent</a></li><li><span class="deprecated">LogEntry</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.model.VerIDFace.html">VerIDFace</a></li><li><span class="deprecated">RecognitionFace</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.model.VerIDUser.html">VerIDUser</a></li><li><a href="com.appliedrec.ver_id.UserManager.html">UserManager</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDUserPictureUriLoader.html">VerIDUserPictureUriLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDUsersLoader.html">VerIDUsersLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDRegistrationLoader.html">VerIDRegistrationLoader</a></li><li><a href="com.appliedrec.ver_id.loaders.VerIDLoader.html">VerIDLoader</a></li><li><a href="com.appliedrec.ver_id.VerIDAuthenticationIntent.html">VerIDAuthenticationIntent</a></li><li><a href="com.appliedrec.ver_id.session.VerIDLivenessDetectionSessionSettings.html">VerIDLivenessDetectionSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDAuthenticationSessionSettings.html">VerIDAuthenticationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.html">VerIDSessionResult</a></li><li><a href="com.appliedrec.ver_id.session.VerIDRegistrationSessionSettings.html">VerIDRegistrationSessionSettings</a></li><li><a href="com.appliedrec.ver_id.session.VerIDSessionSettings.html">VerIDSessionSettings</a></li></ul><h2>Interfaces</h2><ul><li><span class="deprecated">VerID.LogSubmitterListener</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.VerID.LoadCallback.html">VerID.LoadCallback</a></li><li><span class="deprecated">ILogger</span> (deprecated)</li><li><span class="deprecated">ILogSubmitter</span> (deprecated)</li></ul><h2>Enums</h2><ul><li><a href="com.appliedrec.ver_id.VerID.Bearing.html">VerID.Bearing</a></li><li><a href="com.appliedrec.ver_id.VerID.LivenessDetection.html">VerID.LivenessDetection</a></li><li><a href="com.appliedrec.ver_id.VerID.AntiSpoofingMethod.html">VerID.AntiSpoofingMethod</a></li><li><a href="com.appliedrec.ver_id.VerID.SecurityLevel.html">VerID.SecurityLevel</a></li><li><span class="deprecated">ILogger.EventType</span> (deprecated)</li><li><a href="com.appliedrec.ver_id.session.VerIDSessionResult.Outcome.html">VerIDSessionResult.Outcome</a></li></ul></aside>
+</body>
+</html>
+<h1>UserManager</h1>
+<section>
+<h4>Class for managing users in Ver-ID</h4>
+</section>
+<h4>Package com.appliedrec.ver_id</h4>
+<code>public class  UserManager</code>
+<ul class="ancestry"><li>com.appliedrec.ver_id.UserManager
+<ul class="ancestry"><li>java.lang.Object
+</li></ul>
+</li></ul>
+<section><h2>Constructor</h2><dl>
+<dt><h3><a name="UserManager()">UserManager</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public UserManager()</code>
+
+</dd>
+</dl></section>
+<section><h2>Methods</h2><dl>
+<dt><h3><a name="addFaceTemplatesToUser(FaceTemplate[], String)">addFaceTemplatesToUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public addFaceTemplatesToUser(FaceTemplate[], String)</code>
+<p>Add face templates to a user identified by a string
+
+ If a user record with the given identifier does not exist it will be created. If any of the face templates are already associated with the user they will not be duplicated.</p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate[]</a></code></dt>
+<dd>Array of face templates to associate with the user</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="addFaceTemplatesToUser(FaceTemplate[], String, UserManager.Callback<Void>)">addFaceTemplatesToUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public addFaceTemplatesToUser(FaceTemplate[], String, UserManager.Callback<Void>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#addFaceTemplatesToUser(FaceTemplate[], String)">com.appliedrec.ver_id.UserManager.html#addFaceTemplatesToUser(FaceTemplate[], String)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate[]</a></code></dt>
+<dd>Array of face templates to associate with the user</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Void&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getFaceTemplatesForUser(String)">getFaceTemplatesForUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public getFaceTemplatesForUser(String)</code>
+<p>Retrieve user's face templates</p>
+<h4>Parameters</h4>
+<dl>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user for whom to retrieve templates</dd>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate[]</a></code></dt>
+<dd>Array of face templates associated with the user</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getFaceTemplatesForUser(String, UserManager.Callback<FaceTemplate[]>)">getFaceTemplatesForUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public getFaceTemplatesForUser(String, UserManager.Callback<FaceTemplate[]>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#getFaceTemplatesForUser(String)">com.appliedrec.ver_id.UserManager.html#getFaceTemplatesForUser(String)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user for whom to retrieve templates</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;FaceTemplate&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="removeFaceTemplatesFromUser(FaceTemplate[], String)">removeFaceTemplatesFromUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public removeFaceTemplatesFromUser(FaceTemplate[], String)</code>
+<p>Remove face templates from a user
+
+ Face templates that are not associated with the user will be ignored</p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate[]</a></code></dt>
+<dd>Face templates to dissassociate from the user</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user from whom to remove the templates</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="removeFaceTemplatesFromUser(FaceTemplate[], String, UserManager.Callback<Void>)">removeFaceTemplatesFromUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public removeFaceTemplatesFromUser(FaceTemplate[], String, UserManager.Callback<Void>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#removeFaceTemplatesFromUser(FaceTemplate[], String)">com.appliedrec.ver_id.UserManager.html#removeFaceTemplatesFromUser(FaceTemplate[], String)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate[]</a></code></dt>
+<dd>Face templates to dissassociate from the user</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>Identifier for the user from whom to remove the templates</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Void&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="getUsers()">getUsers</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public getUsers()</code>
+<p>Retrieve a list of user identifiers who are associated with at least one face template</p>
+<h4>Returns</h4>
+<dl>
+<dt><code>java.lang.String[]</code></dt>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="getUsers(UserManager.Callback<String[]>)">getUsers</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public getUsers(UserManager.Callback<String[]>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#getUsers()">com.appliedrec.ver_id.UserManager.html#getUsers()</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;String&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="identifyUsersInFaceTemplate(FaceTemplate, Float)">identifyUsersInFaceTemplate</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public identifyUsersInFaceTemplate(FaceTemplate, Float)</code>
+<p>Identify users whose face templates match the given face template</p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplate <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+<dd>Face template to which to compare user face templates</dd>
+<dt>similarityThreshold <code>java.lang.Float</code></dt>
+<dd>Value between `0.0` and `1.0` or `nil` to use a default value of `0.5`</dd>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>java.lang.String[]</code></dt>
+<dd>Identifiers for users whose face templates' distance to the given template is greater than the similarity threshold</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="identifyUsersInFaceTemplate(FaceTemplate, Float, UserManager.Callback<String[]>)">identifyUsersInFaceTemplate</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public identifyUsersInFaceTemplate(FaceTemplate, Float, UserManager.Callback<String[]>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#identifyUsersInFaceTemplate(FaceTemplate, Float)">com.appliedrec.ver_id.UserManager.html#identifyUsersInFaceTemplate(FaceTemplate, Float)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplate <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+<dd>Face template to which to compare user face templates</dd>
+<dt>similarityThreshold <code>java.lang.Float</code></dt>
+<dd>Value between `0.0` and `1.0` or `nil` to use a default value of `0.5`</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;String&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="compareFaceTemplateToUser(FaceTemplate, String)">compareFaceTemplateToUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public compareFaceTemplateToUser(FaceTemplate, String)</code>
+<p>Compare a face template to templates of a given user</p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplate <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+<dd>Face template to compare</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>User to whose face templates the given face template will be compared to</dd>
+</dl>
+<h4>Returns</h4>
+<dl>
+<dt><code>float</code></dt>
+<dd>Similarity score ranging from `0.0` (no similarity) to `1.0` (same)</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="compareFaceTemplateToUser(FaceTemplate, String, UserManager.Callback<Float>)">compareFaceTemplateToUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public compareFaceTemplateToUser(FaceTemplate, String, UserManager.Callback<Float>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#compareFaceTemplateToUser(FaceTemplate, String)">com.appliedrec.ver_id.UserManager.html#compareFaceTemplateToUser(FaceTemplate, String)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplate <code><a href="com.appliedrec.ver_id.model.FaceTemplate.html">com.appliedrec.ver_id.model.FaceTemplate</a></code></dt>
+<dd>Face template to compare</dd>
+<dt>user <code>java.lang.String</code></dt>
+<dd>User to whose face templates the given face template will be compared to</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Float&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="removeUser(String)">removeUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public removeUser(String)</code>
+<p>Remove user record and its associated face templates</p>
+<h4>Parameters</h4>
+<dl>
+<dt>userId <code>java.lang.String</code></dt>
+<dd>User identifier</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="removeUser(String, UserManager.Callback<Void>)">removeUser</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public removeUser(String, UserManager.Callback<Void>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#removeUser(String)">com.appliedrec.ver_id.UserManager.html#removeUser(String)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>userId <code>java.lang.String</code></dt>
+<dd>User identifier</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Void&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="exportFaceTemplates()">exportFaceTemplates</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public exportFaceTemplates()</code>
+<p>Export all face templates</p>
+<h4>Returns</h4>
+<dl>
+<dt><code>java.util.Map&lt;String, FaceTemplate&gt;</code></dt>
+<dd>Map of face templates keyed by user identifiers</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="exportFaceTemplates(UserManager.Callback<Map<String, FaceTemplate[]>>)">exportFaceTemplates</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public exportFaceTemplates(UserManager.Callback<Map<String, FaceTemplate[]>>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#exportFaceTemplates()">com.appliedrec.ver_id.UserManager.html#exportFaceTemplates()</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Map&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+<dt><h3><a name="importFaceTemplates(Map<String, FaceTemplate[]>)">importFaceTemplates</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public importFaceTemplates(Map<String, FaceTemplate[]>)</code>
+<p>Import user records
+
+ Note: If the user exists templates will be appended to the user record</p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code>java.util.Map&lt;String, FaceTemplate&gt;</code></dt>
+<dd>Map of face templates keyed by user identifiers to import</dd>
+</dl>
+<h4>Throws</h4>
+<dl>
+<dt><code>java.lang.Exception</code></dt>
+</dl>
+
+</dd>
+<dt><h3><a name="importFaceTemplates(Map<String, FaceTemplate[]>, UserManager.Callback<Void>)">importFaceTemplates</a></h3><p>Introduced in version 3.1.0</p></dt>
+<dd>
+<code>public importFaceTemplates(Map<String, FaceTemplate[]>, UserManager.Callback<Void>)</code>
+<p>Asynchronous version of <a href="com.appliedrec.ver_id.UserManager.html#importFaceTemplates(Map)">com.appliedrec.ver_id.UserManager.html#importFaceTemplates(Map)</a></p>
+<h4>Parameters</h4>
+<dl>
+<dt>faceTemplates <code>java.util.Map&lt;String, FaceTemplate&gt;</code></dt>
+<dd>Map of face templates keyed by user identifiers to import</dd>
+<dt>callback <code><a href="com.appliedrec.ver_id.UserManager.Callback.html">com.appliedrec.ver_id.UserManager.Callback&lt;Void&gt;</a></code></dt>
+<dd>Invoked on the main thread when the task finishes</dd>
+</dl>
+
+</dd>
+</dl></section>

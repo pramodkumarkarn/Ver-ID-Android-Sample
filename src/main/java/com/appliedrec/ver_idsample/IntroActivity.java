@@ -93,7 +93,6 @@ public class IntroActivity extends PageViewActivity {
             livenessDetection = VerID.LivenessDetection.REGULAR;
         }
         VerIDRegistrationSessionSettings settings = new VerIDRegistrationSessionSettings(VerIDUser.DEFAULT_USER_ID, livenessDetection);
-        settings.showGuide = true;
         settings.showResult = true;
         VerIDRegistrationIntent intent = new VerIDRegistrationIntent(this, settings);
         startActivityForResult(intent, REQUEST_CODE_REGISTER);
