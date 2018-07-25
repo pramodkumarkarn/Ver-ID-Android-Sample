@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	implementation 'com.appliedrec:shared:4.0.2'
-	implementation 'com.appliedrec:det-rec-lib:4.0.2'
-	implementation 'com.appliedrec:verid:4.0.2'
+	implementation 'com.appliedrec:shared:4.1.0'
+	implementation 'com.appliedrec:det-rec-lib:4.1.0'
+	implementation 'com.appliedrec:verid:4.1.0'
 	```
 1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
     
@@ -378,6 +378,11 @@ VerID.shared.discardFaces(new VerIDFace[]{face});
 Full API documentation is available on the project's [Github page](https://appliedrecognition.github.io/Ver-ID-Android-Sample/com.appliedrec.ver_id.VerID.html).
 
 # Release Notes
+
+## Changes in Version 4.1.0
+- Fixed a crash on adding a large amount of users.
+- Added `removeUsers` method to remove more than one user at a time in `UserManager`
+- Added `cameraMirroring` parameter in `VerIDSessionSettings` to mirror the camera preview
 
 ## Changes in Version 4.0.1
 - Fixed bug where old face registrations were retained even after settings `appendIfUserExists` to `false`
