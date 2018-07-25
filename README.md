@@ -39,9 +39,9 @@ Follow these steps to add Ver-ID to your Android Studio project:
 1. Open your app module's **build.gradle** file and under `dependencies` add
 
 	```
-	implementation 'com.appliedrec:shared:4.0.1'
-	implementation 'com.appliedrec:det-rec-lib:4.0.1'
-	implementation 'com.appliedrec:verid:4.0.1'
+	implementation 'com.appliedrec:shared:4.0.2'
+	implementation 'com.appliedrec:det-rec-lib:4.0.2'
+	implementation 'com.appliedrec:verid:4.0.2'
 	```
 1. Open your app's **AndroidManifest.xml** file and add the following tag in `<application>` replacing `[your API secret]` with the API secret your received in step 1:
     
