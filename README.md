@@ -379,6 +379,10 @@ Full API documentation is available on the project's [Github page](https://appli
 
 # Release Notes
 
+## Changes in Version 4.2.0
+- `UserManager.addFaceTemplatesToUser` and `UserManager.removeFaceTemplatesFromUser` deprecated and replaced with `UserManager.assignFaceTemplatesToUser` and `UserManager.deleteFaceTemplates`.
+- `identifyUsersInFaceTemplate(FaceTemplate faceTemplate, Float similarityThreshold)` deprecated and replaced by `identifyUsersInFaceTemplate(FaceTemplate faceTemplate, VerID.SecurityLevel securityLevel)`
+
 ## Changes in Version 4.1.0
 - Fixed a crash on adding a large amount of users.
 - Added `removeUsers` method to remove more than one user at a time in `UserManager`
