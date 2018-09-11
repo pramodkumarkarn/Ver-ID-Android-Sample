@@ -23,7 +23,7 @@ android {
         applicationId "com.appliedrec.ver_idsample"
         minSdkVersion 18
         targetSdkVersion 26
-        versionName = "4.3.2"
+        versionName = "4.3.3"
         archivesBaseName = "ver-id-sample"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -39,9 +39,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.appliedrec:det-rec-lib:4.3.2'
-    implementation 'com.appliedrec:shared:4.3.2'
-    implementation 'com.appliedrec:verid:4.3.2'
+    implementation 'com.appliedrec:det-rec-lib:4.3.3'
+    implementation 'com.appliedrec:shared:4.3.3'
+    implementation 'com.appliedrec:verid:4.3.3'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
