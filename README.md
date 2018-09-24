@@ -50,7 +50,7 @@ Follow these steps to add Ver-ID to your Android Studio project:
        android:name="com.appliedrec.verid.apiSecret" 
        android:value="[your API secret]" />
     ~~~
-1. [Download resources](https://dev.ver-id.com/artifactory/gradle-release/com/appliedrec/resources/android/3.0.0/resources-3.0.0.zip) and unzip them to a **VerIDModels** folder in your app's **assets** folder. 
+1. [Download resources archive](https://github.com/AppliedRecognition/Ver-ID-Android-Sample/blob/master/src/main/assets/VerIDModels.zip) and put it in your app's **assets** folder.
 2. As an alternative to the previous step, specify a URL from which to download the resources. This will reduce the download size of your app. In the app's manifest file:
 	
 	~~~xml
